@@ -30,6 +30,78 @@ test_incorrect_vSwitch0_MTU {
   }
 }
 
+test_correct_vSwitch0_Portgroup {
+  msg := "vSwitch0 is misconfigration. Portgroup should be set."
+  not deny_host_vSwitch0_Portgroup[msg] with input as {
+  "HostSystems": [
+    {
+      "Config": {
+        "Network": {
+          "Vswitch": [
+            {
+              "Name": "vSwitch0",
+              "Portgroup": [
+                "key-vim.host.PortGroup-VM Network",
+                "key-vim.host.PortGroup-Management Network"
+              ]
+            }]}}}]
+  }
+}
+
+test_incorrect_vSwitch0_PortgroupAll {
+  msg := "vSwitch0 is misconfigration. Portgroup should be set."
+  deny_host_vSwitch0_Portgroup[msg] with input as {
+  "HostSystems": [
+    {
+      "Config": {
+        "Network": {
+          "Vswitch": [
+            {
+              "Name": "vSwitch0",
+              "Portgroup": [
+                "key-vim.host.PortGroup-Unset1",
+                "key-vim.host.PortGroup-Unset2"
+              ]
+            }]}}}]
+  }
+}
+
+test_incorrect_vSwitch0_Portgroup1 {
+  msg := "vSwitch0 is misconfigration. Portgroup should be set."
+  deny_host_vSwitch0_Portgroup[msg] with input as {
+  "HostSystems": [
+    {
+      "Config": {
+        "Network": {
+          "Vswitch": [
+            {
+              "Name": "vSwitch0",
+              "Portgroup": [
+                "key-vim.host.PortGroup-Unset",
+                "key-vim.host.PortGroup-Management Network"
+              ]
+            }]}}}]
+  }
+}
+
+test_incorrect_vSwitch0_Portgroup2 {
+  msg := "vSwitch0 is misconfigration. Portgroup should be set."
+  deny_host_vSwitch0_Portgroup[msg] with input as {
+  "HostSystems": [
+    {
+      "Config": {
+        "Network": {
+          "Vswitch": [
+            {
+              "Name": "vSwitch0",
+              "Portgroup": [
+                "key-vim.host.PortGroup-VM Network",
+                "key-vim.host.PortGroup-Unset"
+              ]
+            }]}}}]
+  }
+}
+
 test_correct_vSwitch0_PNIC {
   msg := "vSwitch0 is misconfigration. PNIC should be set vmnic0."
   not deny_host_vSwitch0_PNIC[msg]  with input as {

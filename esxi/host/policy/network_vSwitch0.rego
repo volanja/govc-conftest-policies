@@ -8,6 +8,15 @@ deny_host_vSwitch0_MTU[msg] {
   msg := "vSwitch0 is misconfigration. MTU should be set 1500."
 }
 
+deny_host_vSwitch0_Portgroup[msg] {
+  vswitch := input.HostSystems[0].Config.Network.Vswitch
+  vswitch[0].Name == "vSwitch0"
+  vswitch[0].Portgroup[i] != "key-vim.host.PortGroup-VM Network"
+  vswitch[0].Portgroup[i] != "key-vim.host.PortGroup-Management Network"
+
+  msg := "vSwitch0 is misconfigration. Portgroup should be set."
+}
+
 deny_host_vSwitch0_PNIC[msg] {
   vswitch := input.HostSystems[0].Config.Network.Vswitch
   vswitch[0].Name == "vSwitch0"
