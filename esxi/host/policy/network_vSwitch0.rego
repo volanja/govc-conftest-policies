@@ -1,6 +1,6 @@
 package main
 
-deny_host_vSwitch0_common[msg] {
+deny_host_vSwitch0_MTU[msg] {
   vswitch := input.HostSystems[0].Config.Network.Vswitch
   vswitch[0].Name == "vSwitch0"
   vswitch[0].Mtu != 1500
@@ -8,7 +8,7 @@ deny_host_vSwitch0_common[msg] {
   msg := "vSwitch0 is misconfigration. MTU should be set 1500."
 }
 
-deny_host_vSwitch0_common[msg] {
+deny_host_vSwitch0_PNIC[msg] {
   vswitch := input.HostSystems[0].Config.Network.Vswitch
   vswitch[0].Name == "vSwitch0"
   vswitch[0].Pnic[0] != "key-vim.host.PhysicalNic-vmnic0"

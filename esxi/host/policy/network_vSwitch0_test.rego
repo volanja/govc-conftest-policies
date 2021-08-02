@@ -2,7 +2,7 @@ package main
 
 test_correct_vSwitch0_MTU {
   msg := "vSwitch0 is misconfigration. MTU should be set 1500."
-  not deny_host_vSwitch0_common[msg]  with input as {
+  not deny_host_vSwitch0_MTU[msg]  with input as {
   "HostSystems": [
     {
       "Config": {
@@ -17,7 +17,7 @@ test_correct_vSwitch0_MTU {
 
 test_incorrect_vSwitch0_MTU {
   msg := "vSwitch0 is misconfigration. MTU should be set 1500."
-  deny_host_vSwitch0_common[msg]  with input as {
+  deny_host_vSwitch0_MTU[msg]  with input as {
   "HostSystems": [
     {
       "Config": {
@@ -32,7 +32,7 @@ test_incorrect_vSwitch0_MTU {
 
 test_correct_vSwitch0_PNIC {
   msg := "vSwitch0 is misconfigration. PNIC should be set vmnic0."
-  not deny_host_vSwitch0_common[msg]  with input as {
+  not deny_host_vSwitch0_PNIC[msg]  with input as {
   "HostSystems": [
     {
       "Config": {
@@ -49,7 +49,7 @@ test_correct_vSwitch0_PNIC {
 
 test_incorrect_vSwitch0_PNIC {
   msg := "vSwitch0 is misconfigration. PNIC should be set vmnic0."
-  deny_host_vSwitch0_common[msg]  with input as {
+  deny_host_vSwitch0_PNIC[msg]  with input as {
   "HostSystems": [
     {
       "Config": {
