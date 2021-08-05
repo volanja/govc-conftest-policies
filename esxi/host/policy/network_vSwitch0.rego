@@ -11,6 +11,7 @@ deny_host_vSwitch0_MTU[msg] {
 deny_host_vSwitch0_Portgroup[msg] {
   vswitch := input.HostSystems[0].Config.Network.Vswitch
   vswitch[0].Name == "vSwitch0"
+  count(vswitch[0].Portgroup)  == 2
   vswitch[0].Portgroup[i] != "key-vim.host.PortGroup-VM Network"
   vswitch[0].Portgroup[i] != "key-vim.host.PortGroup-Management Network"
 
@@ -20,6 +21,7 @@ deny_host_vSwitch0_Portgroup[msg] {
 deny_host_vSwitch0_PNIC[msg] {
   vswitch := input.HostSystems[0].Config.Network.Vswitch
   vswitch[0].Name == "vSwitch0"
+  count(vswitch[0].Pnic)  == 1
   vswitch[0].Pnic[0] != "key-vim.host.PhysicalNic-vmnic0"
 
   msg := "vSwitch0 is misconfigration. PNIC should be set vmnic0."
