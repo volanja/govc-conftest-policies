@@ -5,7 +5,7 @@ deny_host_vSwitch_MTU[msg] {
   vswitch.Name == "vSwitch0"
   vswitch.Mtu != 1500
 
-  msg := "vSwitch0 is misconfigration. MTU should be set 1500."
+  msg := sprintf("%s is misconfigration. MTU should be set 1500.", [vswitch.Name])
 }
 
 deny_host_vSwitch_Portgroup[msg] {
@@ -15,7 +15,7 @@ deny_host_vSwitch_Portgroup[msg] {
   vswitch.Portgroup[i] != "key-vim.host.PortGroup-VM Network"
   vswitch.Portgroup[i] != "key-vim.host.PortGroup-Management Network"
 
-  msg := "vSwitch0 is misconfigration. Portgroup should be set."
+  msg := sprintf("%s is misconfigration. Portgroup should be set.", [vswitch.Name])
 }
 
 deny_host_vSwitch_PNIC[msg] {
@@ -24,7 +24,7 @@ deny_host_vSwitch_PNIC[msg] {
   count(vswitch.Pnic)  == 1
   vswitch.Pnic[0] != "key-vim.host.PhysicalNic-vmnic0"
 
-  msg := "vSwitch0 is misconfigration. PNIC should be set vmnic0."
+  msg := sprintf("%s is misconfigration. PNIC should be set vmnic0.", [vswitch.Name])
 }
 
 deny_host_vSwitch_secutiry[msg] {
@@ -32,7 +32,7 @@ deny_host_vSwitch_secutiry[msg] {
   vswitch.Name == "vSwitch0"
   vswitch.Spec.Policy.Security.AllowPromiscuous != false
 
-  msg := "vSwitch0 is misconfigration. Security should be set."
+  msg := sprintf("%s is misconfigration. Security should be set.", [vswitch.Name])
 }
 
 deny_host_vSwitch_secutiry[msg] {
@@ -40,7 +40,7 @@ deny_host_vSwitch_secutiry[msg] {
   vswitch.Name == "vSwitch0"
   vswitch.Spec.Policy.Security.MacChanges != true
 
-  msg := "vSwitch0 is misconfigration. Security should be set."
+  msg := sprintf("%s is misconfigration. Security should be set.", [vswitch.Name])
 }
 
 deny_host_vSwitch_secutiry[msg] {
@@ -48,7 +48,7 @@ deny_host_vSwitch_secutiry[msg] {
   vswitch.Name == "vSwitch0"
   vswitch.Spec.Policy.Security.ForgedTransmits != true
 
-  msg := "vSwitch0 is misconfigration. Security should be set."
+  msg := sprintf("%s is misconfigration. Security should be set.", [vswitch.Name])
 }
 
 deny_host_vSwitch_nicteaming[msg] {
@@ -56,7 +56,7 @@ deny_host_vSwitch_nicteaming[msg] {
   vswitch.Name == "vSwitch0"
   vswitch.Spec.Policy.NicTeaming.Policy != "loadbalance_srcid"
 
-  msg := "vSwitch0 is misconfigration. NicTeaming should be set."
+  msg := sprintf("%s is misconfigration. NicTeaming should be set.", [vswitch.Name])
 }
 
 deny_host_vSwitch_nicteaming[msg] {
@@ -64,7 +64,7 @@ deny_host_vSwitch_nicteaming[msg] {
   vswitch.Name == "vSwitch0"
   vswitch.Spec.Policy.NicTeaming.ReversePolicy != true
 
-  msg := "vSwitch0 is misconfigration. NicTeaming should be set."
+  msg := sprintf("%s is misconfigration. NicTeaming should be set.", [vswitch.Name])
 }
 
 deny_host_vSwitch_nicteaming[msg] {
@@ -72,7 +72,7 @@ deny_host_vSwitch_nicteaming[msg] {
   vswitch.Name == "vSwitch0"
   vswitch.Spec.Policy.NicTeaming.NotifySwitches != true
 
-  msg := "vSwitch0 is misconfigration. NicTeaming should be set."
+  msg := sprintf("%s is misconfigration. NicTeaming should be set.", [vswitch.Name])
 }
 
 # RollingOrder
@@ -83,7 +83,7 @@ deny_host_vSwitch_nicteaming[msg] {
   vswitch.Name == "vSwitch0"
   vswitch.Spec.Policy.NicTeaming.RollingOrder != false
 
-  msg := "vSwitch0 is misconfigration. NicTeaming should be set."
+  msg := sprintf("%s is misconfigration. NicTeaming should be set.", [vswitch.Name])
 }
 
 deny_host_vSwitch_nicteaming[msg] {
@@ -91,7 +91,7 @@ deny_host_vSwitch_nicteaming[msg] {
   vswitch.Name == "vSwitch0"
   vswitch.Spec.Policy.NicTeaming.NicOrder.ActiveNic[_] != "vmnic0"
 
-  msg := "vSwitch0 is misconfigration. NicTeaming should be set."
+  msg := sprintf("%s is misconfigration. NicTeaming should be set.", [vswitch.Name])
 }
 
 deny_host_vSwitch_nicteaming[msg] {
@@ -99,6 +99,6 @@ deny_host_vSwitch_nicteaming[msg] {
   vswitch.Name == "vSwitch0"
   vswitch.Spec.Policy.NicTeaming.NicOrder.StandbyNic != null
 
-  msg := "vSwitch0 is misconfigration. NicTeaming should be set."
+  msg := sprintf("%s is misconfigration. NicTeaming should be set.", [vswitch.Name])
 }
 
