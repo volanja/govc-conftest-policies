@@ -5,5 +5,5 @@ deny_host_Portgroup_VM_Network_vlan[msg] {
   portgroup.Spec.Name == "VM Network"
   portgroup.Spec.VlanId != 0
 
-  msg := "VM Network is misconfigration. VLAN ID should be set 0."
+  msg := sprintf("%s is misconfigration. VLAN ID should be set 0.", [portgroup.Spec.Name])
 }
