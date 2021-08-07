@@ -1,7 +1,7 @@
 package main
 
 deny_host_vSwitch0_MTU[msg] {
-  vswitch := input.HostSystems[0].Config.Network.Vswitch[0]
+  vswitch := input.HostSystems[0].Config.Network.Vswitch[_]
   vswitch.Name == "vSwitch0"
   vswitch.Mtu != 1500
 
@@ -9,7 +9,7 @@ deny_host_vSwitch0_MTU[msg] {
 }
 
 deny_host_vSwitch0_Portgroup[msg] {
-  vswitch := input.HostSystems[0].Config.Network.Vswitch[0]
+  vswitch := input.HostSystems[0].Config.Network.Vswitch[_]
   vswitch.Name == "vSwitch0"
   count(vswitch.Portgroup)  == 2
   vswitch.Portgroup[i] != "key-vim.host.PortGroup-VM Network"
@@ -19,7 +19,7 @@ deny_host_vSwitch0_Portgroup[msg] {
 }
 
 deny_host_vSwitch0_PNIC[msg] {
-  vswitch := input.HostSystems[0].Config.Network.Vswitch[0]
+  vswitch := input.HostSystems[0].Config.Network.Vswitch[_]
   vswitch.Name == "vSwitch0"
   count(vswitch.Pnic)  == 1
   vswitch.Pnic[0] != "key-vim.host.PhysicalNic-vmnic0"
@@ -28,7 +28,7 @@ deny_host_vSwitch0_PNIC[msg] {
 }
 
 deny_host_vSwitch0_secutiry[msg] {
-  vswitch := input.HostSystems[0].Config.Network.Vswitch[0]
+  vswitch := input.HostSystems[0].Config.Network.Vswitch[_]
   vswitch.Name == "vSwitch0"
   vswitch.Spec.Policy.Security.AllowPromiscuous != false
 
@@ -36,7 +36,7 @@ deny_host_vSwitch0_secutiry[msg] {
 }
 
 deny_host_vSwitch0_secutiry[msg] {
-  vswitch := input.HostSystems[0].Config.Network.Vswitch[0]
+  vswitch := input.HostSystems[0].Config.Network.Vswitch[_]
   vswitch.Name == "vSwitch0"
   vswitch.Spec.Policy.Security.MacChanges != true
 
@@ -44,7 +44,7 @@ deny_host_vSwitch0_secutiry[msg] {
 }
 
 deny_host_vSwitch0_secutiry[msg] {
-  vswitch := input.HostSystems[0].Config.Network.Vswitch[0]
+  vswitch := input.HostSystems[0].Config.Network.Vswitch[_]
   vswitch.Name == "vSwitch0"
   vswitch.Spec.Policy.Security.ForgedTransmits != true
 
@@ -52,7 +52,7 @@ deny_host_vSwitch0_secutiry[msg] {
 }
 
 deny_host_vSwitch0_nicteaming[msg] {
-  vswitch := input.HostSystems[0].Config.Network.Vswitch[0]
+  vswitch := input.HostSystems[0].Config.Network.Vswitch[_]
   vswitch.Name == "vSwitch0"
   vswitch.Spec.Policy.NicTeaming.Policy != "loadbalance_srcid"
 
@@ -60,7 +60,7 @@ deny_host_vSwitch0_nicteaming[msg] {
 }
 
 deny_host_vSwitch0_nicteaming[msg] {
-  vswitch := input.HostSystems[0].Config.Network.Vswitch[0]
+  vswitch := input.HostSystems[0].Config.Network.Vswitch[_]
   vswitch.Name == "vSwitch0"
   vswitch.Spec.Policy.NicTeaming.ReversePolicy != true
 
@@ -68,7 +68,7 @@ deny_host_vSwitch0_nicteaming[msg] {
 }
 
 deny_host_vSwitch0_nicteaming[msg] {
-  vswitch := input.HostSystems[0].Config.Network.Vswitch[0]
+  vswitch := input.HostSystems[0].Config.Network.Vswitch[_]
   vswitch.Name == "vSwitch0"
   vswitch.Spec.Policy.NicTeaming.NotifySwitches != true
 
@@ -79,7 +79,7 @@ deny_host_vSwitch0_nicteaming[msg] {
 # true  : not failback
 # false : failback
 deny_host_vSwitch0_nicteaming[msg] {
-  vswitch := input.HostSystems[0].Config.Network.Vswitch[0]
+  vswitch := input.HostSystems[0].Config.Network.Vswitch[_]
   vswitch.Name == "vSwitch0"
   vswitch.Spec.Policy.NicTeaming.RollingOrder != false
 
@@ -87,7 +87,7 @@ deny_host_vSwitch0_nicteaming[msg] {
 }
 
 deny_host_vSwitch0_nicteaming[msg] {
-  vswitch := input.HostSystems[0].Config.Network.Vswitch[0]
+  vswitch := input.HostSystems[0].Config.Network.Vswitch[_]
   vswitch.Name == "vSwitch0"
   vswitch.Spec.Policy.NicTeaming.NicOrder.ActiveNic[_] != "vmnic0"
 
@@ -95,7 +95,7 @@ deny_host_vSwitch0_nicteaming[msg] {
 }
 
 deny_host_vSwitch0_nicteaming[msg] {
-  vswitch := input.HostSystems[0].Config.Network.Vswitch[0]
+  vswitch := input.HostSystems[0].Config.Network.Vswitch[_]
   vswitch.Name == "vSwitch0"
   vswitch.Spec.Policy.NicTeaming.NicOrder.StandbyNic != null
 
