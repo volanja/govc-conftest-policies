@@ -2975,11 +2975,11 @@
               "Label": "NTP Daemon",
               "Required": false,
               "Uninstallable": false,
-              "Running": false,
+              "Running": true,
               "Ruleset": [
                 "ntpClient"
               ],
-              "Policy": "off",
+              "Policy": "on",
               "SourcePackage": {
                 "SourcePackageName": "esx-base",
                 "Description": "This VIB contains all of the base functionality of vSphere ESXi."
@@ -3827,7 +3827,7 @@
                 }
               ],
               "Service": "ntpd",
-              "Enabled": false,
+              "Enabled": true,
               "AllowedHosts": {
                 "IpAddress": null,
                 "IpNetwork": null,
@@ -20827,11 +20827,14 @@
           },
           "SystemClockProtocol": "",
           "NtpConfig": {
-            "Server": null,
+            "Server": [
+              "192.168.100.1"
+            ],
             "ConfigFile": [
               "restrict default nomodify notrap nopeer noquery",
               "restrict 127.0.0.1",
-              "driftfile /etc/ntp.drift"
+              "driftfile /etc/ntp.drift",
+              "server 192.168.100.1"
             ]
           }
         },
@@ -24634,7 +24637,68 @@
                       },
                       "ScaleDescendantsShares": ""
                     },
-                    "Child": null
+                    "Child": [
+                      {
+                        "Key": "host/vim/vmvisor/ntpd/sh.2104215",
+                        "Config": {
+                          "Entity": null,
+                          "ChangeVersion": "",
+                          "LastModified": null,
+                          "CpuAllocation": {
+                            "Reservation": 0,
+                            "ExpandableReservation": false,
+                            "Limit": -1,
+                            "Shares": {
+                              "Shares": 1000,
+                              "Level": "custom"
+                            },
+                            "OverheadLimit": 0
+                          },
+                          "MemoryAllocation": {
+                            "Reservation": 0,
+                            "ExpandableReservation": true,
+                            "Limit": -1,
+                            "Shares": {
+                              "Shares": 0,
+                              "Level": "normal"
+                            },
+                            "OverheadLimit": -1
+                          },
+                          "ScaleDescendantsShares": ""
+                        },
+                        "Child": null
+                      },
+                      {
+                        "Key": "host/vim/vmvisor/ntpd/ntpd.2104227",
+                        "Config": {
+                          "Entity": null,
+                          "ChangeVersion": "",
+                          "LastModified": null,
+                          "CpuAllocation": {
+                            "Reservation": 0,
+                            "ExpandableReservation": false,
+                            "Limit": -1,
+                            "Shares": {
+                              "Shares": 1000,
+                              "Level": "custom"
+                            },
+                            "OverheadLimit": 0
+                          },
+                          "MemoryAllocation": {
+                            "Reservation": 0,
+                            "ExpandableReservation": true,
+                            "Limit": -1,
+                            "Shares": {
+                              "Shares": 0,
+                              "Level": "normal"
+                            },
+                            "OverheadLimit": -1
+                          },
+                          "ScaleDescendantsShares": ""
+                        },
+                        "Child": null
+                      }
+                    ]
                   },
                   {
                     "Key": "host/vim/vmvisor/osfsd",
