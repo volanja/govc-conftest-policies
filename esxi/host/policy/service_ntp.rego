@@ -21,3 +21,15 @@ deny_firewall_ntpd[msg] {
   ruleset.Enabled == false
   msg := "Firewall NTPD should be enabled."
 }
+
+deny_config_ntpd[msg] {
+  ntpconfig := input.HostSystems[0].Config.DateTimeInfo.NtpConfig
+  ntpconfig.Server == null
+  msg := "NTPD should be configured."
+}
+
+deny_config_ntpd[msg] {
+  ntpconfig := input.HostSystems[0].Config.DateTimeInfo.NtpConfig
+  ntpconfig.Server[_] != "192.168.100.1"
+  msg := "NTPD should be configured."
+}

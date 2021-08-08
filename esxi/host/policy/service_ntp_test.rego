@@ -109,3 +109,84 @@ test_firewall_ntpd_disabled {
             }
           }]}}}]}
 }
+
+test_correct_config_ntpd {
+  msg := "NTPD should be configured."
+  not deny_config_ntpd[msg] with input as {
+  "HostSystems": [
+    {
+      "Config": {
+        "DateTimeInfo": {
+          "TimeZone": {
+            "Key": "UTC",
+            "Name": "UTC",
+            "Description": "UTC",
+            "GmtOffset": 0
+          },
+          "SystemClockProtocol": "",
+          "NtpConfig": {
+            "Server": [
+              "192.168.100.1"
+            ],
+            "ConfigFile": [
+              "restrict default nomodify notrap nopeer noquery",
+              "restrict 127.0.0.1",
+              "driftfile /etc/ntp.drift",
+              "server 192.168.100.1"
+            ]
+          }
+        }}}]}
+}
+
+test_incorrect_config_ntpd {
+  msg := "NTPD should be configured."
+  deny_config_ntpd[msg] with input as {
+  "HostSystems": [
+    {
+      "Config": {
+        "DateTimeInfo": {
+          "TimeZone": {
+            "Key": "UTC",
+            "Name": "UTC",
+            "Description": "UTC",
+            "GmtOffset": 0
+          },
+          "SystemClockProtocol": "",
+          "NtpConfig": {
+            "Server": null,
+            "ConfigFile": [
+              "restrict default nomodify notrap nopeer noquery",
+              "restrict 127.0.0.1",
+              "driftfile /etc/ntp.drift"
+            ]
+            }
+        }}}]}
+}
+
+test_invalid_config_ntpd {
+  msg := "NTPD should be configured."
+  deny_config_ntpd[msg] with input as {
+  "HostSystems": [
+    {
+      "Config": {
+        "DateTimeInfo": {
+          "TimeZone": {
+            "Key": "UTC",
+            "Name": "UTC",
+            "Description": "UTC",
+            "GmtOffset": 0
+          },
+          "SystemClockProtocol": "",
+          "NtpConfig": {
+            "Server": [
+              "192.168.100.2"
+            ],
+            "ConfigFile": [
+              "restrict default nomodify notrap nopeer noquery",
+              "restrict 127.0.0.1",
+              "driftfile /etc/ntp.drift",
+              "server 192.168.100.1"
+            ]
+          }
+        }}}]}
+}
