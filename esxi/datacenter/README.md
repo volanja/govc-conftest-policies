@@ -12,7 +12,7 @@ Testing datacenter.info
 ## Target: local files
 
 ```
-$ conftest test datacenter.json
+$ conftest test data/datacenter.json
 
 2 tests, 2 passed, 0 warnings, 0 failures, 0 exceptions
 ```

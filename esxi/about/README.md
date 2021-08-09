@@ -12,7 +12,7 @@ Testing about
 ## Target: local files
 
 ```
-$ conftest test about.json
+$ conftest test data/about.json
 
 1 test, 1 passed, 0 warnings, 0 failures, 0 exceptions
 ```
