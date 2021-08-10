@@ -2,7 +2,7 @@ package main
 
 test_correct_vm_Win2019_NumCPU {
   msg := "WindowsServer2019 is misconfigration. CPU core should be set 2."
-  not deny_vm_Win2019_cpu[msg] with input as {
+  not deny_vm_Win2019_CPU[msg] with input as {
   "VirtualMachines": [
     {
       "Name": "WindowsServer2019",
@@ -16,7 +16,7 @@ test_correct_vm_Win2019_NumCPU {
 
 test_incorrect_vm_Win2019_NumCPU {
   msg := "WindowsServer2019 is misconfigration. CPU core should be set 2."
-  deny_vm_Win2019_cpu[msg] with input as {
+  deny_vm_Win2019_CPU[msg] with input as {
   "VirtualMachines": [
     {
       "Name": "WindowsServer2019",
@@ -30,7 +30,7 @@ test_incorrect_vm_Win2019_NumCPU {
 
 test_incorrect_empty_vm_Win2019_NumCPU {
   msg := "WindowsServer2019 is misconfigration. CPU core should be set 2."
-  deny_vm_Win2019_cpu[msg] with input as {
+  deny_vm_Win2019_CPU[msg] with input as {
   "VirtualMachines": [
     {
       "Name": "WindowsServer2019",

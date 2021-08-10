@@ -1,6 +1,6 @@
 package main
 
-deny_vm_Win2019_cpu[msg] {
+deny_vm_Win2019_CPU[msg] {
   vm := input.VirtualMachines[0]
   vm.Name == "WindowsServer2019"
   ret := object.get(vm.Config.Hardware,"NumCPU",false)
